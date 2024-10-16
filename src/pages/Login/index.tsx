@@ -6,6 +6,7 @@ import * as yup from "yup";
 
 import { Container, LoginContainer, Column, Spacing, Title } from "./styles";
 import { defaultValues, IFormLogin } from "./types";
+import { isDisabled } from "@testing-library/user-event/dist/utils";
 
 const schema = yup
   .object({
@@ -28,6 +29,8 @@ const Login = () => {
     reValidateMode: "onChange",
   });
 
+  console.log(isValid);
+  //console.log(isDisabled);
   return (
     <Container>
       <LoginContainer>
@@ -49,7 +52,7 @@ const Login = () => {
             errorMessage={errors?.password?.message}
           />
           <Spacing />
-          <Button title="Entrar" />
+          <Button title="Entrar" disabled = {!isValid}/> 
         </Column>
       </LoginContainer>
     </Container>
